@@ -3,20 +3,19 @@ export async function listHandler(req, res) {
 
   if (typeof body === "undefined") {
     res
-      .send({ error: "Could not decode request: JSON parsing failed" })
-      .status(400);
+      .status(400)
+      .send({ error: "Could not decode request: JSON parsing failed" });
   } else {
     const obj = tryParseJSONObject(body);
-    console.log("json parse", obj);
     if (obj === false) {
       res
-        .send({ error: "Could not decode request: JSON parsing failed" })
-        .status(400);
+        .status(400)
+        .send({ error: "Could not decode request: JSON parsing failed" });
     } else {
       if (obj.hasOwnProperty("payload") !== true) {
         res
-          .send({ error: "Could not decode request: JSON parsing failed" })
-          .status(400);
+          .status(400)
+          .send({ error: "Could not decode request: JSON parsing failed" });
       } else {
         let finalList = obj.payload
           .filter((show) => {
@@ -29,11 +28,9 @@ export async function listHandler(req, res) {
               title: show?.title,
             };
           });
-        res
-          .send({
-            response: finalList,
-          })
-          .status(200);
+        res.status(200).send({
+          response: finalList,
+        });
       }
     }
   }
