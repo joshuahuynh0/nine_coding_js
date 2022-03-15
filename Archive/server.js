@@ -6,6 +6,6 @@ const app = express();
 
 app.use(bodyParser.text({ type: "*/*" }));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT);
+const port = process.env.PORT || 3000;
+app.listen(port);
 app.post("/", listHandler);
