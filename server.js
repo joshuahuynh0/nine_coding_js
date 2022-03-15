@@ -6,6 +6,6 @@ const app = express();
 
 app.use(bodyParser.text({ type: "*/*" }));
 
-// app runs on port 3000
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port);
 app.post("/", listHandler);
